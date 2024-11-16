@@ -1,0 +1,29 @@
+
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base"  // If you chose Airbnb
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-console": "off",           // Allow console logs
+    "@typescript-eslint/no-var-requires": "off",  // Allow 'require' for certain imports
+    "import/prefer-default-export": "off", // Disable forcing default export
+    "@typescript-eslint/explicit-module-boundary-types": "off", // Don't force return types
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"], // Ensure no unused variables in TS
+    "semi": ["error", "always"],    // Enforce semicolons
+    "quotes": ["error", "single"],  // Enforce single quotes
+    "comma-dangle": ["error", "never"] // No trailing commas
+  }
+}

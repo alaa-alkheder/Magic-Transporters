@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: ee3b4d1239f1  # MongoDB image (can be a specific tag)
+    container_name: unifi-test-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  node-app:
+    build:
+      context: .  # Build the Dockerfile in the current directory
+    container_name: unifi-test-node-app
+    restart: always
+    environment:
+      MONGO_URI: mongodb://root:password@mongodb:27017  # Connection string to MongoDB
+    ports:
+      - '3000:3000'  # Expose your app's port
+    depends_on:
+      - mongodb  # Ensure MongoDB is started before the app
+
+volumes:
+  mongo-data:
